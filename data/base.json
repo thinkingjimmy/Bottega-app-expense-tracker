@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "name": "记账本",
+  "columns": [
+    { "id": "date", "name": "日期", "type": "date" },
+    { "id": "amount", "name": "金额", "type": "number" },
+    {
+      "id": "category",
+      "name": "分类",
+      "type": "select",
+      "options": [
+        { "id": "food", "label": "餐饮" },
+        { "id": "transport", "label": "交通" },
+        { "id": "shopping", "label": "购物" },
+        { "id": "housing", "label": "居住" },
+        { "id": "health", "label": "医疗" },
+        { "id": "entertainment", "label": "娱乐" },
+        { "id": "other", "label": "其他" }
+      ]
+    },
+    { "id": "note", "name": "备注", "type": "text" }
+  ],
+  "views": [
+    {
+      "id": "ledger",
+      "name": "明细",
+      "order": 0,
+      "config": {
+        "type": "table",
+        "sorts": [{ "columnId": "date", "direction": "desc" }],
+        "columnAggregations": { "amount": "sum" }
+      }
+    },
+    {
+      "id": "analysis",
+      "name": "分析",
+      "order": 1,
+      "config": {
+        "type": "chart",
+        "charts": [
+          {
+            "id": "by-category",
+            "name": "分类占比",
+            "chartType": "pie",
+            "dimensionColumnId": "category",
+            "valueColumnIds": ["amount"],
+            "aggregation": "sum",
+            "colSpan": 2,
+            "rowSpan": 1
+          },
+          {
+            "id": "by-day",
+            "name": "每日支出",
+            "chartType": "bar",
+            "dimensionColumnId": "date",
+            "dateBucket": "day",
+            "valueColumnIds": ["amount"],
+            "aggregation": "sum",
+            "colSpan": 2,
+            "rowSpan": 1
+          }
+        ]
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "sample-1",
+      "values": {
+        "date": "2026-03-02",
+        "amount": 25,
+        "category": "food",
+        "note": "示例：公司楼下午餐"
+      }
+    },
+    {
+      "id": "sample-2",
+      "values": {
+        "date": "2026-03-02",
+        "amount": 6,
+        "category": "transport",
+        "note": "示例：地铁通勤"
+      }
+    },
+    {
+      "id": "sample-3",
+      "values": {
+        "date": "2026-03-03",
+        "amount": 128,
+        "category": "shopping",
+        "note": "示例：换季衣物"
+      }
+    },
+    {
+      "id": "sample-4",
+      "values": {
+        "date": "2026-03-04",
+        "amount": 3200,
+        "category": "housing",
+        "note": "示例：三月房租"
+      }
+    },
+    {
+      "id": "sample-5",
+      "values": {
+        "date": "2026-03-05",
+        "amount": 48,
+        "category": "entertainment",
+        "note": "示例：电影票两张"
+      }
+    },
+    {
+      "id": "sample-6",
+      "values": {
+        "date": "2026-03-06",
+        "amount": 76,
+        "category": "health",
+        "note": "示例：常备药"
+      }
+    }
+  ]
+}
