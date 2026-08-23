@@ -15,7 +15,7 @@
 
 ## 依赖
 
-无。App 只使用 AI Chat 内置 Base 工具。
+无。App 只使用 Bottega 内置 Base 工具。
 
 ## 许可
 

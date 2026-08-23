@@ -13,7 +13,7 @@ Built-in categories are food, transport, shopping, housing, health, entertainmen
 
 ## Requirements
 
-None. The App uses AI Chat's built-in Base tools.
+None. The App uses Bottega's built-in Base tools.
 
 ## License
 
