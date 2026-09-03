@@ -27,16 +27,16 @@ base-ops skill，本文只定义记账本自己的约定。
 
 1. 先 `base_describe` 读到 `revision` 与列 schema，确认 `category` 的 option id 集合。
 2. 行 id 用 `e-{YYYYMMDD}-{当日序号}`（如 `e-20260306-2`）。同日多笔时先
-   `base_query`（filter `date = 该日`）数出已有条数再编号，天然幂等、不会撞号。
+   `read_base`（filter `date = 该日`）数出已有条数再编号，天然幂等、不会撞号。
 3. 一次输入含多笔（「早饭 12 午饭 25」）就一次 `base_insert_rows` 批量写入，
    不要一笔一次调用。
 4. 写完回一行确认：日期、金额、分类标签、当前这一天的合计。
 
 ## 改账与查询
 
-- 改已有记录用 `base_patch_rows`（字段级 LWW）；先 `base_query` 定位行 id，不凭记忆猜。
+- 改已有记录用 `base_patch_rows`（字段级 LWW）；先 `read_base` 定位行 id，不凭记忆猜。
 - 用户说「记错了/删掉刚才那笔」时，确认到具体行再 `base_delete_rows`，一次只删确认过的行。
-- 统计问题（本月餐饮多少、哪天花得最多）一律 `base_query` 取数后自己算，
+- 统计问题（本月餐饮多少、哪天花得最多）一律 `read_base` 取数后自己算，
   不要凭上下文里的历史消息回答——账本才是真相。
 - 完整导出用 `base_export_csv`，返回的是 artifact 元数据而不是内联 CSV 正文。
 
