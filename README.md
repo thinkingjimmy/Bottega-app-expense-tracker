@@ -18,3 +18,8 @@ None. The package uses manifest schema v2 and Bottega's built-in Base tools.
 ## License
 
 MIT
+
+## Minimum Bottega version
+
+This release requires Bottega **0.1.3** or later, declared in `app.compat.json`.
+Keep this minimum for styling, copy, and business changes that use existing host capabilities. Raise it only when a new host API, package format, or build capability is required, and test against that minimum. Publish the compatible Bottega release before publishing an App that requires it. Editing, rebuilding, and sharing preserve this declaration.
