@@ -14,12 +14,11 @@ import { ArrowUpRight, RefreshCw } from "lucide-react";
 import { getCopy, label } from "./copy";
 import { filterExpenses, ledger, summarize, validSchema } from "./domain";
 import { Button, Input, Label } from "./components/ui/forms";
+import { SelectControl } from "./components/ui/select";
 import { Card, Skeleton } from "./components/ui/surfaces";
 import { Tabs } from "./components/ui/navigation";
 import { Analysis, Ledger } from "./components/views";
 
-const selectClass =
-  "min-h-11 rounded-lg border border-slate-300 bg-white px-3 text-base dark:border-slate-700 dark:bg-slate-950";
 export default function ExpenseTracker() {
   const environment = useAppEnvironment(),
     copy = getCopy(environment.language);
@@ -94,43 +93,41 @@ export default function ExpenseTracker() {
       ) : (
         <>
           <div className="flex flex-wrap items-end gap-3">
-            <label className="grid gap-2 text-sm font-medium">
-              {copy.month}
-              <select
-                className={selectClass}
+            <div className="grid w-44 max-w-full gap-2 text-sm font-medium">
+              <Label htmlFor="month-filter">{copy.month}</Label>
+              <SelectControl
+                id="month-filter"
+                label={copy.month}
                 value={month}
-                onChange={(event) => setMonth(event.target.value)}
-              >
-                <option value="">{copy.allTime}</option>
-                {[...new Set(items.map((item) => item.date.slice(0, 7)))]
-                  .sort()
-                  .reverse()
-                  .map((value) => (
-                    <option key={value}>{value}</option>
-                  ))}
-              </select>
-            </label>
-            <label className="grid gap-2 text-sm font-medium">
-              {copy.category}
-              <select
-                className={selectClass}
+                onValueChange={setMonth}
+                options={[
+                  { value: "", label: copy.allTime },
+                  ...[...new Set(items.map((item) => item.date.slice(0, 7)))]
+                    .sort()
+                    .reverse()
+                    .map((value) => ({ value, label: value })),
+                ]}
+              />
+            </div>
+            <div className="grid w-52 max-w-full gap-2 text-sm font-medium">
+              <Label htmlFor="category-filter">{copy.category}</Label>
+              <SelectControl
+                id="category-filter"
+                label={copy.category}
                 value={category}
-                onChange={(event) => setCategory(event.target.value)}
-              >
-                <option value="">{copy.allCategories}</option>
-                {[
-                  ...new Set(
-                    items.map((item) => item.category).filter(Boolean),
-                  ),
-                ]
-                  .sort()
-                  .map((value) => (
-                    <option key={value} value={value}>
-                      {label(copy, value)}
-                    </option>
-                  ))}
-              </select>
-            </label>
+                onValueChange={setCategory}
+                options={[
+                  { value: "", label: copy.allCategories },
+                  ...[
+                    ...new Set(
+                      items.map((item) => item.category).filter(Boolean),
+                    ),
+                  ]
+                    .sort()
+                    .map((value) => ({ value, label: label(copy, value) })),
+                ]}
+              />
+            </div>
             <div className="grid min-w-40 flex-1 gap-2">
               <Label htmlFor="search">{copy.search}</Label>
               <Input

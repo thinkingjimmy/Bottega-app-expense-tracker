@@ -29,6 +29,8 @@ Source and component provenance are documented in [gui/README.md](gui/README.md)
 
 MIT
 
+Dropdowns use the App-owned shadcn Select composition: aligned text and icons, 44px triggers, scrollable choices, keyboard navigation, and visible focus.
+
 ## Minimum Bottega version
 
 This release requires Bottega **0.1.3** or later, declared in `app.compat.json`.

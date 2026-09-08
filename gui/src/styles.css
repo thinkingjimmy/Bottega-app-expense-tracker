@@ -1,6 +1,6 @@
 /**
  * [INPUT]: Tailwind CSS and the host color scheme
- * [OUTPUT]: Responsive App theme and shared data presentation styles
+ * [OUTPUT]: Responsive App theme, shadcn Select tokens, and shared data presentation styles
  * [POS]: Compiled GUI stylesheet entry
  * [PROTOCOL]: Update this header when making changes, then check README.md.
  */
@@ -10,6 +10,12 @@
   :root {
     font-family: ui-sans-serif, system-ui, sans-serif;
     color-scheme: light dark;
+    --select-background: light-dark(#fff, #0f172a);
+    --select-foreground: light-dark(#0f172a, #f1f5f9);
+    --select-border: light-dark(#cbd5e1, #334155);
+    --select-muted: light-dark(#64748b, #94a3b8);
+    --select-accent: light-dark(#f1f5f9, #1e293b);
+    --select-ring: #3b82f6;
   }
   body {
     margin: 0;
