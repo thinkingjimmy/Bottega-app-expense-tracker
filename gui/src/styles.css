@@ -1,0 +1,51 @@
+/**
+ * [INPUT]: Tailwind CSS and the host color scheme
+ * [OUTPUT]: Responsive App theme and shared data presentation styles
+ * [POS]: Compiled GUI stylesheet entry
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@layer base {
+  :root {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    color-scheme: light dark;
+  }
+  body {
+    margin: 0;
+    background: light-dark(#f8fafc, #0f172a);
+    color: light-dark(#0f172a, #f1f5f9);
+    -webkit-font-smoothing: antialiased;
+  }
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+  button:not(:disabled),
+  select {
+    cursor: pointer;
+  }
+  th,
+  td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid light-dark(#e2e8f0, #334155);
+  }
+  th {
+    font-weight: 500;
+    color: light-dark(#475569, #cbd5e1);
+  }
+  :focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

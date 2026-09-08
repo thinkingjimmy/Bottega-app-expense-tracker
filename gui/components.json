@@ -1,0 +1,15 @@
+{
+  "aliases": {
+    "components": "@/components",
+    "lib": "@/lib",
+    "ui": "@/components/ui"
+  },
+  "components": [
+    "forms",
+    "surfaces",
+    "navigation"
+  ],
+  "iconLibrary": "lucide",
+  "primitives": "base-ui",
+  "schemaVersion": 1
+}

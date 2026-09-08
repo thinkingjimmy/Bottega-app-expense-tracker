@@ -13,7 +13,17 @@ Built-in categories are food, transport, shopping, housing, health, entertainmen
 
 ## Requirements
 
-None. The package uses manifest schema v2 and Bottega's built-in Base tools.
+Bottega 0.1.3 or later. The package uses manifest schema v2 and built-in Base tools.
+
+### Dependencies
+
+React, TypeScript, Tailwind CSS, and shadcn components are supplied by the host. No App-specific service or dependency installation is required.
+
+## Interface
+
+The React interface provides month/category/search filters, a paginated ledger, and category/day analysis. Spending and refunds are reported separately; net totals preserve negative amounts. The existing schema does not declare a currency, so the interface does not invent a currency symbol. It reads complete Base snapshots through the host SDK. The existing Data tab and Use chat remain the editing surfaces.
+
+Source and component provenance are documented in [gui/README.md](gui/README.md).
 
 ## License
 
